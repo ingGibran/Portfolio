@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Code2, X, Send } from 'lucide-react';
+import { Heart, Code2, X, Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { socialLinks, personalInfo } from '../data/constants';
 
 const Contact = () => {
@@ -8,25 +8,59 @@ const Contact = () => {
     const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
     const [emailForm, setEmailForm] = useState({
         email: '',
+        subject: '',
         message: ''
     });
+    const [sendStatus, setSendStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleEmailClick = (e) => {
         e.preventDefault();
         setIsEmailModalOpen(true);
+        setSendStatus('idle');
+        setErrorMessage('');
     };
 
     const handleCloseModal = () => {
         setIsEmailModalOpen(false);
-        setEmailForm({ email: '', message: '' });
+        setEmailForm({ email: '', subject: '', message: '' });
+        setSendStatus('idle');
+        setErrorMessage('');
     };
 
-    const handleSend = () => {
-        // Create mailto link with the form data
-        const subject = encodeURIComponent('Contact from Portfolio');
-        const body = encodeURIComponent(`From: ${emailForm.email}\n\n${emailForm.message}`);
-        window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
-        handleCloseModal();
+    const handleSend = async () => {
+        setSendStatus('loading');
+        setErrorMessage('');
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email_visitor: emailForm.email,
+                    subject: emailForm.subject || 'Contact from Portfolio',
+                    message: emailForm.message
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to send message');
+            }
+
+            const data = await response.json();
+            setSendStatus('success');
+
+            // Auto close after 3 seconds on success
+            setTimeout(() => {
+                handleCloseModal();
+            }, 3000);
+
+        } catch (error) {
+            setSendStatus('error');
+            setErrorMessage('Failed to send message. Please try again.');
+        }
     };
 
     const handleInputChange = (e) => {
@@ -127,7 +161,7 @@ const Contact = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            onClick={handleCloseModal}
+                            onClick={sendStatus === 'loading' ? undefined : handleCloseModal}
                             className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
                         />
 
@@ -141,83 +175,151 @@ const Contact = () => {
                          w-full max-w-md mx-4"
                         >
                             <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
-                                {/* Header */}
-                                <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200">
-                                    <h3 className="text-lg font-bold text-slate-900">
-                                        Send <span className="text-accent-500">Email</span>
-                                    </h3>
-                                    <button
-                                        onClick={handleCloseModal}
-                                        className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 
-                               rounded-lg transition-colors"
+                                {/* Success State */}
+                                {sendStatus === 'success' ? (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="p-8 text-center"
                                     >
-                                        <X className="w-5 h-5" />
-                                    </button>
-                                </div>
+                                        <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <CheckCircle className="w-8 h-8 text-emerald-600" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 mb-2">Message Sent!</h3>
+                                        <p className="text-slate-600">
+                                            Thank you for reaching out. I'll get back to you soon.
+                                        </p>
+                                    </motion.div>
+                                ) : (
+                                    <>
+                                        {/* Header */}
+                                        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200">
+                                            <h3 className="text-lg font-bold text-slate-900">
+                                                Send <span className="text-accent-500">Email</span>
+                                            </h3>
+                                            <button
+                                                onClick={handleCloseModal}
+                                                disabled={sendStatus === 'loading'}
+                                                className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 
+                                   rounded-lg transition-colors disabled:opacity-50"
+                                            >
+                                                <X className="w-5 h-5" />
+                                            </button>
+                                        </div>
 
-                                {/* Form */}
-                                <div className="p-6 space-y-4">
-                                    {/* Email Input */}
-                                    <div>
-                                        <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-                                            Your Email
-                                        </label>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                            value={emailForm.email}
-                                            onChange={handleInputChange}
-                                            placeholder="your.email@example.com"
-                                            className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl
-                                 text-slate-800 placeholder-slate-400
-                                 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
-                                 transition-all duration-200"
-                                        />
-                                    </div>
+                                        {/* Form */}
+                                        <div className="p-6 space-y-4">
+                                            {/* Error Message */}
+                                            {sendStatus === 'error' && (
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: -10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm"
+                                                >
+                                                    <AlertCircle className="w-4 h-4 shrink-0" />
+                                                    <span>{errorMessage}</span>
+                                                </motion.div>
+                                            )}
 
-                                    {/* Message Input */}
-                                    <div>
-                                        <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
-                                            Message
-                                        </label>
-                                        <textarea
-                                            id="message"
-                                            name="message"
-                                            value={emailForm.message}
-                                            onChange={handleInputChange}
-                                            rows={4}
-                                            placeholder="Write your message here..."
-                                            className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl
-                                 text-slate-800 placeholder-slate-400 resize-none
-                                 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
-                                 transition-all duration-200"
-                                        />
-                                    </div>
-                                </div>
+                                            {/* Email Input */}
+                                            <div>
+                                                <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                                                    Your Email
+                                                </label>
+                                                <input
+                                                    type="email"
+                                                    id="email"
+                                                    name="email"
+                                                    value={emailForm.email}
+                                                    onChange={handleInputChange}
+                                                    disabled={sendStatus === 'loading'}
+                                                    placeholder="your.email@example.com"
+                                                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl
+                                     text-slate-800 placeholder-slate-400
+                                     focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+                                     disabled:opacity-50 disabled:cursor-not-allowed
+                                     transition-all duration-200"
+                                                />
+                                            </div>
 
-                                {/* Footer Buttons */}
-                                <div className="flex items-center justify-end gap-3 px-6 py-4 bg-slate-50 border-t border-slate-200">
-                                    <button
-                                        onClick={handleCloseModal}
-                                        className="px-5 py-2.5 text-slate-700 font-medium rounded-lg
-                               border border-slate-300 hover:bg-slate-100
-                               transition-all duration-200"
-                                    >
-                                        Cancel
-                                    </button>
-                                    <button
-                                        onClick={handleSend}
-                                        disabled={!emailForm.email || !emailForm.message}
-                                        className="flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white 
-                               font-medium rounded-lg hover:bg-primary-600
-                               disabled:opacity-50 disabled:cursor-not-allowed
-                               transition-all duration-200"
-                                    >
-                                        <Send className="w-4 h-4" />
-                                        Send
-                                    </button>
-                                </div>
+                                            {/* Subject Input */}
+                                            <div>
+                                                <label htmlFor="subject" className="block text-sm font-medium text-slate-700 mb-2">
+                                                    Subject
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="subject"
+                                                    name="subject"
+                                                    value={emailForm.subject}
+                                                    onChange={handleInputChange}
+                                                    disabled={sendStatus === 'loading'}
+                                                    placeholder="What's this about?"
+                                                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl
+                                     text-slate-800 placeholder-slate-400
+                                     focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+                                     disabled:opacity-50 disabled:cursor-not-allowed
+                                     transition-all duration-200"
+                                                />
+                                            </div>
+
+                                            {/* Message Input */}
+                                            <div>
+                                                <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
+                                                    Message
+                                                </label>
+                                                <textarea
+                                                    id="message"
+                                                    name="message"
+                                                    value={emailForm.message}
+                                                    onChange={handleInputChange}
+                                                    disabled={sendStatus === 'loading'}
+                                                    rows={4}
+                                                    placeholder="Write your message here..."
+                                                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl
+                                     text-slate-800 placeholder-slate-400 resize-none
+                                     focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+                                     disabled:opacity-50 disabled:cursor-not-allowed
+                                     transition-all duration-200"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        {/* Footer Buttons */}
+                                        <div className="flex items-center justify-end gap-3 px-6 py-4 bg-slate-50 border-t border-slate-200">
+                                            <button
+                                                onClick={handleCloseModal}
+                                                disabled={sendStatus === 'loading'}
+                                                className="px-5 py-2.5 text-slate-700 font-medium rounded-lg
+                                   border border-slate-300 hover:bg-slate-100
+                                   disabled:opacity-50 disabled:cursor-not-allowed
+                                   transition-all duration-200"
+                                            >
+                                                Cancel
+                                            </button>
+                                            <button
+                                                onClick={handleSend}
+                                                disabled={!emailForm.email || !emailForm.message || sendStatus === 'loading'}
+                                                className="flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white 
+                                   font-medium rounded-lg hover:bg-primary-600
+                                   disabled:opacity-50 disabled:cursor-not-allowed
+                                   transition-all duration-200 min-w-[100px] justify-center"
+                                            >
+                                                {sendStatus === 'loading' ? (
+                                                    <>
+                                                        <Loader2 className="w-4 h-4 animate-spin" />
+                                                        Sending...
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Send className="w-4 h-4" />
+                                                        Send
+                                                    </>
+                                                )}
+                                            </button>
+                                        </div>
+                                    </>
+                                )}
                             </div>
                         </motion.div>
                     </>
