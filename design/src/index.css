@@ -1,0 +1,153 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Custom theme configuration for Tailwind v4 */
+@theme {
+  --color-primary-50: #ecfeff;
+  --color-primary-100: #cffafe;
+  --color-primary-200: #a5f3fc;
+  --color-primary-300: #67e8f9;
+  --color-primary-400: #22d3ee;
+  --color-primary-500: #06b6d4;
+  --color-primary-600: #0891b2;
+  --color-primary-700: #0e7490;
+  --color-primary-800: #155e75;
+  --color-primary-900: #164e63;
+
+  --color-accent-400: #a78bfa;
+  --color-accent-500: #8b5cf6;
+  --color-accent-600: #7c3aed;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --animate-gradient: gradient 8s ease infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes gradient {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-950 text-slate-100 font-sans antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-600;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: linear-gradient(90deg, var(--color-primary-400), var(--color-accent-400), var(--color-primary-400));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient 8s ease infinite;
+  }
+
+  .glass-card {
+    @apply bg-slate-800/50 backdrop-blur-lg border border-slate-700/50 rounded-2xl;
+  }
+
+  .glow-border {
+    @apply relative;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 text-slate-900 font-semibold rounded-lg transition-all duration-300;
+    background: linear-gradient(90deg, var(--color-primary-500), var(--color-primary-600));
+    box-shadow: 0 10px 15px -3px rgb(6 182 212 / 0.25);
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(90deg, var(--color-primary-400), var(--color-primary-500));
+    box-shadow: 0 10px 15px -3px rgb(6 182 212 / 0.4);
+    transform: scale(1.05);
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 border border-slate-600 text-slate-300 font-medium rounded-lg transition-all duration-300;
+  }
+
+  .btn-secondary:hover {
+    @apply border-primary-500 text-primary-400;
+    transform: scale(1.05);
+  }
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl font-bold mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-slate-400 text-lg mb-12 max-w-2xl;
+  }
+}
+
+/* Code background animation */
+.code-bg {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34, 211, 238, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(139, 92, 246, 0.1), transparent);
+}
+
+/* Floating particles effect */
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(34, 211, 238, 0.5);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
