@@ -4,9 +4,9 @@ import ExperienceCard from './ExperienceCard';
 
 const Experience = () => {
     return (
-        <section id="experience" className="py-20 lg:py-32 bg-slate-900/50">
+        <section id="experience" className="py-20 lg:py-32 bg-white">
             <div className="section-container">
-                {/* Section Header */}
+                {/* Section Header - Black + Orange */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -15,8 +15,8 @@ const Experience = () => {
                     className="text-center mb-16"
                 >
                     <h2 className="section-title">
-                        <span className="text-slate-100">Work </span>
-                        <span className="gradient-text">Experience</span>
+                        <span className="text-slate-900">Work </span>
+                        <span className="text-accent-500">Experience</span>
                     </h2>
                     <p className="section-subtitle mx-auto">
                         My professional journey and the roles I've taken on

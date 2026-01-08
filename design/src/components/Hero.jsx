@@ -11,7 +11,7 @@ const Hero = () => {
     };
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden code-bg">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-bg">
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {/* Gradient orbs */}
@@ -25,7 +25,7 @@ const Hero = () => {
                         repeat: Infinity,
                         ease: "easeInOut",
                     }}
-                    className="absolute -top-40 -left-40 w-80 h-80 bg-primary-500/20 rounded-full blur-3xl"
+                    className="absolute -top-40 -left-40 w-80 h-80 bg-primary-100 rounded-full blur-3xl"
                 />
                 <motion.div
                     animate={{
@@ -38,11 +38,11 @@ const Hero = () => {
                         ease: "easeInOut",
                         delay: 1,
                     }}
-                    className="absolute -bottom-40 -right-40 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl"
+                    className="absolute -bottom-40 -right-40 w-96 h-96 bg-accent-100 rounded-full blur-3xl"
                 />
 
                 {/* Grid pattern */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b20_1px,transparent_1px),linear-gradient(to_bottom,#1e293b20_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+                <div className="absolute inset-0 grid-pattern" />
             </div>
 
             {/* Content */}
@@ -53,28 +53,28 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="text-primary-400 font-mono text-sm mb-4"
+                        className="text-primary-600 font-mono text-sm mb-4"
                     >
                         {"<Hello World />"}
                     </motion.p>
 
-                    {/* Name */}
+                    {/* Name - Black with Orange accent */}
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4"
                     >
-                        <span className="text-slate-100">I'm </span>
-                        <span className="gradient-text">{personalInfo.name.split(' ').slice(0, 2).join(' ')}</span>
+                        <span className="text-slate-900">I'm </span>
+                        <span className="text-accent-500">{personalInfo.name.split(' ').slice(0, 2).join(' ')}</span>
                     </motion.h1>
 
-                    {/* Role */}
+                    {/* Role - Black */}
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="text-xl sm:text-2xl md:text-3xl font-semibold text-slate-300 mb-6"
+                        className="text-xl sm:text-2xl md:text-3xl font-semibold text-slate-800 mb-6"
                     >
                         {personalInfo.role}
                     </motion.h2>
@@ -84,7 +84,7 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}
-                        className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto mb-8 leading-relaxed"
+                        className="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto mb-8 leading-relaxed"
                     >
                         {personalInfo.valueStatement}
                     </motion.p>
@@ -120,7 +120,7 @@ const Hero = () => {
                         href={personalInfo.cvLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-primary-400 transition-colors"
+                        className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-primary-600 transition-colors"
                     >
                         <Download className="w-4 h-4" />
                         Download CV
@@ -139,10 +139,10 @@ const Hero = () => {
                     animate={{ y: [0, 8, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                     onClick={() => handleScrollTo('about')}
-                    className="text-slate-500 hover:text-primary-400 transition-colors"
+                    className="text-slate-400 hover:text-primary-600 transition-colors p-2 rounded-full bg-white shadow-md border border-slate-200"
                     aria-label="Scroll down"
                 >
-                    <ChevronDown className="w-6 h-6" />
+                    <ChevronDown className="w-5 h-5" />
                 </motion.button>
             </motion.div>
         </section>
