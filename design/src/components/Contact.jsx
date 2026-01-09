@@ -3,6 +3,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Code2, X, Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { socialLinks, personalInfo } from '../data/constants';
 
+// Skill images for decorative floating elements
+const skillImages = [
+    { src: '/skills/python.png', alt: 'Python' },
+    { src: '/skills/GitHub.png', alt: 'GitHub' },
+    { src: '/skills/fastapi.png', alt: 'FastAPI' },
+    { src: '/skills/Linux.png', alt: 'Linux' },
+    { src: '/skills/django.png', alt: 'Django' },
+    { src: '/skills/PostgresSQL.png', alt: 'PostgreSQL' },
+];
+
+// Floating positions for contact section
+const floatingPositions = [
+    { top: '10%', left: '4%', size: 40, delay: 0 },
+    { top: '25%', right: '5%', size: 36, delay: 0.5 },
+    { top: '50%', left: '3%', size: 38, delay: 1 },
+    { top: '70%', right: '4%', size: 42, delay: 1.5 },
+    { top: '40%', right: '3%', size: 34, delay: 0.8 },
+    { top: '85%', left: '5%', size: 36, delay: 2 },
+];
+
 const Contact = () => {
     const currentYear = new Date().getFullYear();
     const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
@@ -70,8 +90,50 @@ const Contact = () => {
     };
 
     return (
-        <footer id="contact" className="py-20 lg:py-32 bg-white border-t border-slate-200">
-            <div className="section-container">
+        <footer id="contact" className="py-20 lg:py-32 bg-white border-t border-slate-200 relative overflow-hidden">
+            {/* Floating Skill Images */}
+            <div className="absolute inset-0 pointer-events-none hidden lg:block">
+                {skillImages.map((image, index) => {
+                    const position = floatingPositions[index % floatingPositions.length];
+                    return (
+                        <motion.div
+                            key={image.alt}
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            whileInView={{ opacity: 0.12, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{
+                                duration: 0.8,
+                                delay: position.delay,
+                            }}
+                            style={{
+                                position: 'absolute',
+                                top: position.top,
+                                left: position.left,
+                                right: position.right,
+                                width: position.size,
+                                height: position.size,
+                            }}
+                            className="transition-all duration-1000"
+                        >
+                            <motion.img
+                                src={image.src}
+                                alt={image.alt}
+                                className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                                animate={{
+                                    y: [0, -6, 0],
+                                }}
+                                transition={{
+                                    duration: 3.5 + Math.random() * 2,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                }}
+                            />
+                        </motion.div>
+                    );
+                })}
+            </div>
+
+            <div className="section-container relative z-10">
                 {/* Section Header - Black + Orange */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

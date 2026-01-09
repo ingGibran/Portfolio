@@ -18,8 +18,8 @@ export const personalInfo = {
     name: "Alejandro Gibrán Zavala González",
     role: "Backend & ML Developer",
     valueStatement: "I build scalable backend systems and intelligent machine learning solutions using Python to turn data into real-world impact.",
-    cvLink: "#", // Update with actual CV link
-    email: "alegizago@gmail.com", // Update with actual email
+    cvLink: "#",
+    email: "alegizago@gmail.com",
 };
 
 // About Section
@@ -44,12 +44,12 @@ export const skillsData = {
     Backend: {
         icon: Server,
         color: "from-primary-400 to-primary-600",
-        skills: ["Python", "Django", "Django Rest Framework", "FastAPI", "Pydantic", "SQLModel"],
+        skills: ["Python", "Java", "Django", "Django Rest Framework", "FastAPI", "Pydantic", "SQLModel"],
     },
     Frontend: {
         icon: Layout,
         color: "from-accent-400 to-accent-600",
-        skills: ["HTML", "CSS"],
+        skills: ["HTML", "CSS", "JavaScript"],
     },
     Databases: {
         icon: Database,
@@ -59,7 +59,7 @@ export const skillsData = {
     Tools: {
         icon: Wrench,
         color: "from-amber-400 to-amber-600",
-        skills: ["Git / GitHub", "Linux", "Render"],
+        skills: ["Git / GitHub", "Linux", "Render", "Vercel"],
     },
 };
 

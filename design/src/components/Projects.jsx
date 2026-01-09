@@ -40,7 +40,7 @@ const Projects = () => {
                         className="text-center mt-12"
                     >
                         <a
-                            href="https://github.com/yourusername"
+                            href="https://github.com/ingGibran"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-slate-800 hover:text-primary-600 
