@@ -17,33 +17,6 @@ Backend and Machine Learning Developer focused on building robust server-side ar
 * **Backend Development:** API design, Database management, Server-side logic.
 * **Machine Learning:** Model training, Data analysis, Predictive modeling.
 
-*(Suggested additions based on role)*
-* **Languages:** Python, JavaScript/TypeScript, SQL, C++.
-* **Frameworks:** FastAPI, Django, Flask, Node.js, TensorFlow/PyTorch, Scikit-learn.
-* **Tools:** Docker, Git, Kubernetes, AWS/GCP.
-
----
-
-### 🚀 Projects
-
-**Featured Web Portfolio**
-* **Link:** [portfolio-one-silk-82.vercel.app](https://portfolio-one-silk-82.vercel.app/)
-* **Description:** A personal portfolio showcasing backend and ML projects, deployed on Vercel.
-
-**[Project Name Placeholder]**
-* **Stack:** [e.g., Python, Docker, PostgreSQL]
-* **Description:** [Brief description of what the project does and the problem it solves.]
-
----
-
-### 💼 Experience
-
-**[Role Name]** | *[Company Name]*
-*Dates: [Start Date] – [End Date]*
-* Designed and implemented scalable backend microservices.
-* Optimized database queries for improved performance.
-* Collaborated with cross-functional teams to integrate ML models into production.
-
 ---
 
 ### 🎓 Education
@@ -52,10 +25,3 @@ Backend and Machine Learning Developer focused on building robust server-side ar
 *[University Name]*
 * Focus: Computer Science / Artificial Intelligence
 
----
-
-### 📫 Contact
-* **Web:** [portfolio-one-silk-82.vercel.app](https://portfolio-one-silk-82.vercel.app/)
-* **Email:** [Your Email Here]
-* **LinkedIn:** [Your LinkedIn Profile]
-* **GitHub:** [Your GitHub Profile]
