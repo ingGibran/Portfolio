@@ -1,7 +1,7 @@
 # Alejandro Gibrán Zavala González
 ## Backend & ML Developer
 
-**Location:** Morelia, Michoacán, Mexico (Based on current context)  
+**Location:** Morelia, Michoacán, Mexico
 **Portfolio:** [https://portfolio-one-silk-82.vercel.app/](https://portfolio-one-silk-82.vercel.app/)
 
 ---
@@ -21,7 +21,5 @@ Backend and Machine Learning Developer focused on building robust server-side ar
 
 ### 🎓 Education
 
-**[Degree Name]**
-*[University Name]*
-* Focus: Computer Science / Artificial Intelligence
-
+**[B.Eng. in Computer Systems Engineering]**
+*[Instituto Tecnológico de Morelia]*
