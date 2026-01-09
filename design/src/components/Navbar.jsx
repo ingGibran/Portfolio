@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Code2 } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { navLinks, personalInfo } from '../data/constants';
 
 const Navbar = () => {
@@ -34,21 +34,7 @@ const Navbar = () => {
                 }`}
         >
             <nav className="section-container py-4">
-                <div className="flex items-center justify-between">
-                    {/* Logo */}
-                    <a
-                        href="#"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}
-                        className="flex items-center gap-2 text-slate-800 font-bold text-lg hover:text-primary-600 transition-colors"
-                    >
-                        <div className="p-1.5 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg">
-                            <Code2 className="w-5 h-5 text-white" />
-                        </div>
-                        <span className="hidden sm:inline">AGZ</span>
-                    </a>
+                <div className="flex items-center justify-center">
 
                     {/* Desktop Navigation */}
                     <ul className="hidden md:flex items-center gap-8">

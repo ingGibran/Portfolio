@@ -1,6 +1,29 @@
 import { motion } from 'framer-motion';
 import { Calendar, Building2 } from 'lucide-react';
 
+// Helper function to render text with clickable links
+const renderTextWithLinks = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const parts = text.split(urlRegex);
+
+    return parts.map((part, index) => {
+        if (part.match(urlRegex)) {
+            return (
+                <a
+                    key={index}
+                    href={part}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-600 hover:text-primary-700 underline font-medium transition-colors"
+                >
+                    {part}
+                </a>
+            );
+        }
+        return part;
+    });
+};
+
 const ExperienceCard = ({ experience, index = 0, isLast = false }) => {
     const { company, role, period, description, technologies } = experience;
 
@@ -46,7 +69,7 @@ const ExperienceCard = ({ experience, index = 0, isLast = false }) => {
 
                 {/* Description */}
                 <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                    {description}
+                    {renderTextWithLinks(description)}
                 </p>
 
                 {/* Technologies */}

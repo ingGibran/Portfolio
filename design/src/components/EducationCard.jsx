@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { GraduationCap, Calendar, CheckCircle, Clock } from 'lucide-react';
 
 const EducationCard = ({ education, index = 0 }) => {
-    const { institution, degree, period, description, status } = education;
+    const { institution, degree, period, description, status, logo } = education;
 
     const isCompleted = status === "Completed";
 
@@ -15,10 +15,16 @@ const EducationCard = ({ education, index = 0 }) => {
             className="glass-card p-6 group"
         >
             <div className="flex items-start gap-4">
-                {/* Icon */}
-                <div className="p-3 bg-primary-500 rounded-xl shrink-0">
-                    <GraduationCap className="w-6 h-6 text-white" />
-                </div>
+                {/* Icon or Logo */}
+                {logo ? (
+                    <div className="w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-white shadow-sm border border-slate-200">
+                        <img src={logo} alt={institution} className="w-full h-full object-contain p-1" />
+                    </div>
+                ) : (
+                    <div className="p-3 bg-primary-500 rounded-xl shrink-0">
+                        <GraduationCap className="w-6 h-6 text-white" />
+                    </div>
+                )}
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">

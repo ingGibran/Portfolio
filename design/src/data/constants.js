@@ -17,9 +17,9 @@ import {
 export const personalInfo = {
     name: "Alejandro Gibrán Zavala González",
     role: "Backend & ML Developer",
-    valueStatement: "I turn machine learning models into scalable APIs with FastAPI and scikit-learn.",
+    valueStatement: "I build scalable backend systems and intelligent machine learning solutions using Python to turn data into real-world impact.",
     cvLink: "#", // Update with actual CV link
-    email: "your.email@example.com", // Update with actual email
+    email: "alegizago@gmail.com", // Update with actual email
 };
 
 // About Section
@@ -32,7 +32,7 @@ export const aboutData = {
             icon: Server,
         },
         {
-            title: "ML in Production",
+            title: "Machine Learning in Production",
             description: "Deploying models with Scikit-learn, Pandas, NumPy, and Matplotlib",
             icon: Cpu,
         },
@@ -67,95 +67,90 @@ export const skillsData = {
 export const projectsData = [
     {
         id: 1,
-        name: "Heart Failure Prediction API",
-        description: "A scalable REST API that detects heart failure risks using machine learning. Features include patient data validation, prediction endpoints, and model performance metrics. Built with production-ready architecture and Docker containerization.",
-        image: null, // Add project screenshot path if available
-        techStack: ["FastAPI", "Scikit-learn", "Docker", "Pydantic", "Pandas"],
-        githubLink: "https://github.com/yourusername/heart-failure-api", // Update with actual link
-        liveLink: "#", // Update with actual demo link
+        name: "Heart Failure Prediction",
+        description: "A scalable REST API that detects heart failure risks using machine learning.",
+        image: "/HeartPredictor.png",
+        techStack: ["Python", "Scikit-learn", "Pandas", "NumPy", "FastAPI", "Pydantic", "Uvicorn", "HTML", "REACT"],
+        githubLink: "https://github.com/ingGibran/Heart-Failure-Predictor",
+        liveLink: "https://heart-failure-predictor-teal.vercel.app/",
         featured: true,
     },
-    // Add more projects here following the same structure
-    // {
-    //   id: 2,
-    //   name: "Project Name",
-    //   description: "Project description...",
-    //   image: null,
-    //   techStack: ["Tech1", "Tech2"],
-    //   githubLink: "#",
-    //   liveLink: "#",
-    //   featured: false,
-    // },
+    {
+        id: 2,
+        name: "House Price Predictor",
+        description: "A scalable REST API that detects heart failure risks using machine learning.",
+        image: "/HousePricePredictor.png",
+        techStack: ["Python", "Scikit-learn", "Pandas", "NumPy", "FastAPI", "Pydantic", "Uvicorn", "HTML", "REACT"],
+        githubLink: "https://github.com/ingGibran/House-Price-Predictor",
+        liveLink: "https://house-price-predictor-ashy.vercel.app/",
+        featured: false,
+    }
 ];
 
 // Experience Data
 export const experienceData = [
     {
         id: 1,
-        company: "Your Company / Freelance",
-        role: "Backend Developer",
-        period: "2024 - Present",
-        description: "Developed REST APIs and backend services using Python and FastAPI. Implemented machine learning models for data processing and prediction tasks. Worked with SQL databases and deployed applications to cloud platforms.",
-        technologies: ["Python", "FastAPI", "PostgreSQL", "Docker"],
+        company: "Citelis",
+        role: "Software Development Intern",
+        period: "Aug 2023 - Dec 2023",
+        description: "Developed the frontend of an internal system (SIGO) used by company employees, maintained and updated existing systems using Java and Python to fix bugs and implement new features, and collaborated with the development team to improve usability, performance, and overall reliability of internal tools.",
+        technologies: ["Python", "Java", "HTML", "CSS", "Vue", "JavaScript", "Django"],
     },
-    // Add more experience entries here
-    // {
-    //   id: 2,
-    //   company: "Company Name",
-    //   role: "Role Title",
-    //   period: "Year - Year",
-    //   description: "Description of responsibilities and achievements...",
-    //   technologies: ["Tech1", "Tech2"],
-    // },
+    {
+        id: 2,
+        company: "Citelis",
+        role: "Analyst Intern",
+        period: "Aug 2025 - Present",
+        description: "Analyzed and interpreted company data using Microsoft Dynamics 365 to support reporting, insights, and data-driven decision-making.",
+        technologies: ["Microsoft Dynamics 365", "SQL", "Python", "Matplotlib", "Pandas", "NumPy", "Scikit-learn"],
+    },
+    {
+        id: 3,
+        company: "Home",
+        role: "Creating My Own Projects ❤️",
+        period: "Everyday",
+        description: "Creating my own projects to improve my skills and knowledge. You can find them on my GitHub: https://github.com/ingGibran",
+        technologies: ["Python", "Java", "FastAPI", "Django", "Spring Boot", "PostgreSQL", "MySQL", "SQLite", "Apache", "Git / GitHub", "Linux", "Vercel"],
+    }
 ];
 
 // Education Data
 export const educationData = [
     {
         id: 1,
-        institution: "Your University", // Update with actual university name
+        institution: "Instituto Tecnológico de Morelia",
         degree: "B.Eng. in Computer Systems Engineering",
-        period: "2021 - Present", // Update with actual dates
+        period: "Jan 2024 - Expected June 2029",
         description: "Focused on software development, databases, and machine learning. Coursework includes data structures, algorithms, computer networks, and AI fundamentals.",
         status: "In Progress",
+        logo: "/itm-logo.webp",
     },
-    // Add certifications or additional education
-    // {
-    //   id: 2,
-    //   institution: "Certification Provider",
-    //   degree: "Certification Name",
-    //   period: "Year",
-    //   description: "Description...",
-    //   status: "Completed",
-    // },
+    {
+        id: 2,
+        degree: "Self-Study ❤️",
+        period: "4 Ever",
+        description: "Motivated by discipline, curiosity, and professional growth, I focus on continuous learning and actively study independently to strengthen my skills.",
+        status: "In Progress",
+    },
 ];
 
 // Social Links
 export const socialLinks = [
     {
         name: "Email",
-        url: "mailto:your.email@example.com", // Update with actual email
+        url: "mailto:alegizago@gmail.com", // Update with actual email
         icon: Mail,
     },
     {
         name: "LinkedIn",
-        url: "https://linkedin.com/in/yourprofile", // Update with actual LinkedIn
+        url: "https://www.linkedin.com/in/alejandro-gibr%C3%A1n-zavala-gonz%C3%A1lez-517384358/", // Update with actual LinkedIn
         icon: Linkedin,
     },
     {
         name: "GitHub",
-        url: "https://github.com/yourusername", // Update with actual GitHub
+        url: "https://github.com/ingGibran", // Update with actual GitHub
         icon: Github,
-    },
-    {
-        name: "Indeed",
-        url: "https://indeed.com/profile", // Update with actual Indeed profile
-        icon: Briefcase,
-    },
-    {
-        name: "Computrabajo",
-        url: "https://computrabajo.com/profile", // Update with actual profile
-        icon: Briefcase,
     },
 ];
 
