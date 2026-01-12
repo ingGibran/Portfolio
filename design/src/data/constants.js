@@ -24,7 +24,7 @@ export const personalInfo = {
 
 // About Section
 export const aboutData = {
-    background: `Junior backend and machine learning developer focused on Python and Java, currently pursuing a B.Eng. in Computer Systems Engineering. Hands-on experience building CRUD applications, REST APIs, and desktop tools using Django, Spring Boot, and SQL databases, as well as applying machine learning techniques with Python (NumPy, pandas, scikit-learn). Interested in deploying ML models to production and constantly learning modern tools for AI and backend development within Linux-based environments.`,
+    background: `Computer Systems Engineering student with a strong focus on backend development and applied machine learning. Experienced in building robust APIs and backend services using FastAPI and Django / Django REST Framework, as well as developing and analyzing ML models with Scikit-learn, NumPy, and Pandas. Proficient in data visualization using Matplotlib and Seaborn to communicate insights effectively. Possesses deep knowledge of Java for desktop application development and solid experience with SQL databases (PostgreSQL, MySQL, SQLite). Familiar with modern development tools and practices including Docker, Git/GitHub, Linux, pytest, and Jupyter Notebooks. Comfortable working with web technologies such as HTML, CSS, and JSON, with a strong interest in continuous learning and professional growth.`,
     highlights: [
         {
             title: "Python Backend",

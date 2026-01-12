@@ -1,6 +1,58 @@
 import { motion } from 'framer-motion';
 import { aboutData } from '../data/constants';
 
+// Keywords to highlight in the background text
+const highlightKeywords = [
+    'Computer Systems Engineering',
+    'backend development',
+    'machine learning',
+    'FastAPI',
+    'Django',
+    'Django REST Framework',
+    'Scikit-learn',
+    'NumPy',
+    'Pandas',
+    'Matplotlib',
+    'Seaborn',
+    'Java',
+    'SQL databases',
+    'PostgreSQL',
+    'MySQL',
+    'SQLite',
+    'Docker',
+    'Git/GitHub',
+    'Linux',
+    'pytest',
+    'Jupyter Notebooks',
+    'HTML',
+    'CSS',
+    'JSON',
+];
+
+// Function to highlight keywords in text
+const highlightText = (text) => {
+    // Sort keywords by length (longest first) to avoid partial matches
+    const sortedKeywords = [...highlightKeywords].sort((a, b) => b.length - a.length);
+
+    // Create regex pattern
+    const pattern = new RegExp(`(${sortedKeywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi');
+
+    // Split text by keywords
+    const parts = text.split(pattern);
+
+    return parts.map((part, index) => {
+        const isKeyword = sortedKeywords.some(k => k.toLowerCase() === part.toLowerCase());
+        if (isKeyword) {
+            return (
+                <span key={index} className="text-primary-600 font-semibold">
+                    {part}
+                </span>
+            );
+        }
+        return part;
+    });
+};
+
 const About = () => {
     return (
         <section id="about" className="py-20 lg:py-32 bg-slate-50">
@@ -36,7 +88,7 @@ const About = () => {
                                 Background
                             </h3>
                             <p className="text-slate-600 leading-relaxed">
-                                {aboutData.background}
+                                {highlightText(aboutData.background)}
                             </p>
                         </div>
                     </motion.div>
