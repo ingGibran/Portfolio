@@ -118,7 +118,7 @@ const Hero = () => {
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.5 }}
                         href={personalInfo.cvLink}
-                        target="_blank"
+                        download
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-primary-600 transition-colors"
                     >

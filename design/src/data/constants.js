@@ -18,7 +18,7 @@ export const personalInfo = {
     name: "Alejandro Gibrán Zavala González",
     role: "Backend & ML Developer",
     valueStatement: "I build scalable backend systems and intelligent machine learning solutions using Python to turn data into real-world impact.",
-    cvLink: "#",
+    cvLink: "/Alejandro_Gibran_Zavala_Gonzalez_CV.pdf",
     email: "alegizago@gmail.com",
 };
 
