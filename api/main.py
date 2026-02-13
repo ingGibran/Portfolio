@@ -79,7 +79,7 @@ def crear_template_contacto(email_visitor: str, asunto: str, mensaje: str):
     """
     return html
 
-@app.post("/send-email")
+@app.post("/submit-message")
 async def contact_form(contact_data: ContactSchema, background_tasks: BackgroundTasks):
     
     admin_email = "alegizago@gmail.com" 
