@@ -54,13 +54,13 @@ const Contact = () => {
 
         try {
             const apiUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
-            const response = await fetch(`${apiUrl}/submit-message`, {
+            const response = await fetch(`${apiUrl}/api/inquiry`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    email_visitor: emailForm.email,
+                    email: emailForm.email,
                     subject: emailForm.subject || 'Contact from Portfolio',
                     message: emailForm.message
                 }),

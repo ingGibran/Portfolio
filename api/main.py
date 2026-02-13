@@ -43,11 +43,11 @@ conf = ConnectionConfig(
 )
 
 class ContactSchema(BaseModel):
-    email_visitor: EmailStr
+    email: EmailStr
     subject: str
     message: str
 
-def crear_template_contacto(email_visitor: str, asunto: str, mensaje: str):
+def crear_template_contacto(email: str, asunto: str, mensaje: str):
     html = f"""
     <!DOCTYPE html>
     <html>
@@ -67,27 +67,27 @@ def crear_template_contacto(email_visitor: str, asunto: str, mensaje: str):
                 <h2>📬 Nuevo Mensaje de Contacto</h2>
             </div>
             
-            <p><span class="label">De:</span> {email_visitor}</p>
+            <p><span class="label">De:</span> {email}</p>
             <p><span class="label">Asunto:</span> {asunto}</p>
             
             <div class="message-box">
                 "{mensaje}"
             </div>
 
-            <a href="mailto:{email_visitor}?subject=Re: {asunto}" class="btn">Responder correo</a>
+            <a href="mailto:{email}?subject=Re: {asunto}" class="btn">Responder correo</a>
         </div>
     </body>
     </html>
     """
     return html
 
-@app.post("/submit-message")
+@app.post("/api/inquiry")
 async def contact_form(contact_data: ContactSchema, background_tasks: BackgroundTasks):
     
     admin_email = "alegizago@gmail.com" 
     
     html_content = crear_template_contacto(
-        contact_data.email_visitor, 
+        contact_data.email, 
         contact_data.subject, 
         contact_data.message
     )
@@ -97,7 +97,7 @@ async def contact_form(contact_data: ContactSchema, background_tasks: Background
         recipients=[admin_email], 
         body=html_content,
         subtype=MessageType.html,
-        reply_to=[contact_data.email_visitor] 
+        reply_to=[contact_data.email] 
     )
 
     fm = FastMail(conf)
